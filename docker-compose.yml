@@ -1,0 +1,41 @@
+version: '3'
+services:
+  keycloak:
+    container_name: keycloak
+    image: jboss/keycloak:15.0.2
+    environment:
+      DB_VENDOR: mysql
+      DB_ADDR: mysql
+      DB_PORT: 3306
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: keycloak
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      DEBUG_PORT: '*:8787'
+      DEBUG_MODE: 'true'
+    command: '--debug'
+    ports:
+      - 8080:8080
+      - 8443:8443
+      - 8787:8787
+      - 9990:9990
+    volumes:
+      - ./target/keycloak-session-model-jpa.jar:/opt/jboss/keycloak/standalone/deployments/keycloak-session-model-jpa.jar:ro
+      - ./src/main/startup-scripts/:/opt/jboss/startup-scripts/:ro
+  mysql:
+    image: mysql/mysql-server:8.0.25
+    container_name: mysql
+    command: [ "mysqld",
+               "--character-set-server=utf8mb4",
+               "--collation-server=utf8mb4_unicode_ci",
+               "--bind-address=0.0.0.0",
+               "--default_authentication_plugin=mysql_native_password" ]
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: keycloak
