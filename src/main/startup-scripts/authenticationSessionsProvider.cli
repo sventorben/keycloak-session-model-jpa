@@ -3,9 +3,5 @@ batch
 /subsystem=keycloak-server/spi=authenticationSessions:add
 /subsystem=keycloak-server/spi=authenticationSessions/provider=jpa-auth-session:add(enabled=true)
 /subsystem=keycloak-server/spi=authenticationSessions:write-attribute(name=default-provider, value=jpa-auth-session)
-
-/subsystem=keycloak-server/spi=connectionsJpa/provider=default:map-put(name=properties,key=showSql,value=true)
-/subsystem=logging/logger=org.hibernate.type:add(level=TRACE)
-
 run-batch
 stop-embedded-server
