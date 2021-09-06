@@ -4,7 +4,7 @@
 
     <groupId>de.sventorben.keycloak</groupId>
     <artifactId>keycloak-session-model-jpa</artifactId>
-    <version>15.0.0</version>
+    <version>15.0.1-SNAPSHOT</version>
 
     <name>Keycloak: Session Model JPA</name>
     <description>A JPA implementation for Keycloak session model</description>
@@ -28,7 +28,7 @@
         <developerConnection>scm:git:https://github.com/sventorben/keycloak-session-model-jpa.git
         </developerConnection>
         <url>https://github.com/sventorben/keycloak-session-model-jpa.git</url>
-        <tag>v15.0.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
